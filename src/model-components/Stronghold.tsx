@@ -1,13 +1,12 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
 import { a } from '@react-spring/three'
 import * as THREE from 'three'
 
 export default function Model(props: any) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/assets/stronghold/the_last_stronghold_animated.glb')
-  const { actions } = useAnimations(animations, group)
+  useAnimations(animations, group)
   return (
     <a.group ref={group} {...props} dispose={null} scale={0.75}>
       <a.group name="Sketchfab_Scene">

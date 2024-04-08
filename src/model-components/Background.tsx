@@ -1,11 +1,9 @@
-import { useRef, useEffect } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
-import { a } from '@react-spring/three'
+import { useRef } from 'react'
+import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 
 export default function Model(props: any) {
-const group = useRef()
+useRef()
 const { nodes, materials } = useGLTF('/assets/background/background.gltf')
   return (
     <group {...props} dispose={null}>

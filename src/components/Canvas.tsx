@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Loader } from './Loader';
 import { OrbitControls, Environment } from '@react-three/drei';
 import Zen_gallery from '../model-components/Zen_gallery';
-import Stronghold from '../model-components/Stronghold';
+// import Stronghold from '../model-components/Stronghold';
 import Background from '../../public/assets/background/Background';
 
 export const func = () => {

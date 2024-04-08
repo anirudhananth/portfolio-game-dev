@@ -1,14 +1,13 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
-import { a } from '@react-spring/three'
+import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export default function Model(props: any) {
   const group = useRef<THREE.Group | null>(null);
   const armature: any = useRef();
   const { nodes, materials, animations } = useGLTF('/assets/zen_gallery/zen_gallery.gltf');
-  const { actions } = useAnimations(animations, group);
+  useAnimations(animations, group);
 
   useFrame(({ clock }) => {
     if (armature.current) {
