@@ -5,11 +5,36 @@ import { a } from '@react-spring/three'
 import * as THREE from 'three'
 
 export default function Model(props: any) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/assets/zen_gallery/zen_gallery.gltf')
-  const { actions } = useAnimations(animations, group)
+  const group = useRef<THREE.Group | null>(null);
+  const armature: any = useRef();
+  const { nodes, materials, animations } = useGLTF('/assets/zen_gallery/zen_gallery.gltf');
+  const { actions } = useAnimations(animations, group);
+
+  useFrame(({ clock }) => {
+    if (armature.current) {
+      // [-414.125,-280.628,2000]
+      armature.current.position.x = -414.125;
+      armature.current.position.y = -280.628;
+      armature.current.position.z = 2000;
+      (armature.current.rotation as THREE.Euler).z = - 2 * clock.getElapsedTime();
+      // [-414.125, 147.628, 502.318]
+      armature.current.position.x = 0;
+      armature.current.position.y = 417.628;
+      armature.current.position.z = -1502.318;
+    }
+  });
+
+  useFrame(({ clock }) => {
+    if (group.current) {
+      (group.current.position).y = Math.sin(clock.getElapsedTime() * 1.5) / 2;
+    }
+  })
+
   return (
-    <group ref={group} {...props} dispose={null}>
+    <mesh>
+      <group ref={group} {...props} dispose={null}>
+      <pointLight position={[0,1,-2]} power={20} intensity={25} castShadow={true}/>
+      <pointLight position={[0,1,-5]} power={2} intensity={5} castShadow={true}/>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={0.003}>
           <group name="54532df5623845c1a999f7c3f0f401d4fbx" rotation={[Math.PI / 2, 0, 0]}>
@@ -88,7 +113,7 @@ export default function Model(props: any) {
                     material={materials.Water}
                   />
                 </group>
-                <group
+                {/* <group
                   name="Leaves_bollen"
                   position={[731.089, 1289.816, -704.343]}
                   rotation={[-Math.PI / 2, 0.171, 0]}
@@ -100,7 +125,7 @@ export default function Model(props: any) {
                     geometry={(nodes.Leaves_bollen_Tree_0 as THREE.Mesh).geometry}
                     material={materials.Tree}
                   />
-                </group>
+                </group> */}
                 <group
                   name="Fence"
                   position={[-1190.339, -103.85, 178.397]}
@@ -121,21 +146,26 @@ export default function Model(props: any) {
                   scale={465.443}
                 />
                 <group
+                  
                   name="Woosh_02"
                   position={[-2.477, 443.303, -1249.202]}
                   rotation={[0, 0, -Math.PI]}
                   scale={465.443}
                 />
                 <group name="Fish" rotation={[-Math.PI / 2, 0, 0]} scale={100} />
+                <mesh ref={armature}>
                 <group
+                  
                   name="Armature"
-                  position={[-414.125, 147.628, 502.318]}
+                  // position={[-414.125, 147.628, 502.318]}
+                  position={[-414.125,-280.628,2000]}
                   rotation={[-Math.PI / 2, 0, 0]}
                   scale={100}>
                   <group name="Object_25">
                     <primitive object={nodes._rootJoint} />
                     <skinnedMesh
-                      name="Object_28"
+                      
+                       name="Object_28"
                       geometry={(nodes.Object_28 as THREE.Mesh).geometry}
                       material={materials.Woosh}
                       skeleton={(nodes.Object_28 as THREE.SkinnedMesh).skeleton}
@@ -153,12 +183,14 @@ export default function Model(props: any) {
                       skeleton={(nodes.Object_32 as THREE.SkinnedMesh).skeleton}
                     /> */}
                     <group
-                      name="Object_27"
+                       
+                       name="Object_27"
                       position={[-2.477, 443.304, -1296.752]}
                       rotation={[Math.PI, 0, 0]}
                       scale={465.443}
                     />
                     <group
+                      
                       name="Object_29"
                       position={[-2.477, 443.304, -1249.202]}
                       rotation={[0, 0, Math.PI]}
@@ -167,12 +199,14 @@ export default function Model(props: any) {
                     <group name="Object_31" rotation={[-Math.PI / 2, 0, 0]} scale={100} />
                   </group>
                 </group>
+                </mesh>
               </group>
             </group>
           </group>
         </group>
       </group>
     </group>
+    </mesh>
   )
 }
 

@@ -12,7 +12,7 @@ import * as THREE from 'three'
 export default function Model(props: any) {
   const { nodes, materials } = useGLTF('/assets/background/background.gltf')
   return (
-    <group {...props} dispose={null} scale={5}>
+    <group {...props} dispose={null} scale={20}>
       <mesh geometry={(nodes.Object001 as THREE.Mesh).geometry} material={materials.Material__25__background_JPG_002} />
     </group>
   )
