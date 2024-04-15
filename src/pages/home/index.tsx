@@ -2,7 +2,7 @@ import Canvas from "../../components/Canvas"
 
 const Home = () => {
   return (
-    <section className="w-screen h-screen bg-gray-500">
+    <section className="w-screen h-screen bg-gray-900">
       {/* <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center text-white">
         POPUP
       </div> */}
