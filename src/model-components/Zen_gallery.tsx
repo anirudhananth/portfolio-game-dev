@@ -3,11 +3,46 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-export default function Model(props: any) {
-  const group = useRef<THREE.Group | null>(null);
+type island = {
+  isRotating: boolean,
+  setIsRotating: any,
+  position?: THREE.Vector3,
+  rotation?: THREE.Euler
+}
+
+export default function Model({isRotating, setIsRotating, ...props}: island) {
+  const islandRef = useRef<THREE.Group | null>(null);
   const armature: any = useRef();
+
+  // const { gl, viewport } = useThree();
+
+  // const lastX: any = useRef(0);
+  // const rotationSpeed = useRef(0);
+  // const dampFactor = 0.95;
+
+  // const handlePointerDown = (e: TouchEvent | MouseEvent) => {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   setIsRotating(true);
+
+  //   const clientX = (e as TouchEvent).touches ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX;
+
+  //   lastX.current = clientX;
+  // }
+
+  // const handlePointerUp = (e: Event) => {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   setIsRotating(false);
+  // }
+
+  // const handlePointerMove = (e: Event) => {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  // }
+
   const { nodes, materials, animations } = useGLTF('/assets/zen_gallery/zen_gallery.gltf');
-  useAnimations(animations, group);
+  useAnimations(animations, islandRef);
 
   useFrame(({ clock }) => {
     if (armature.current) {
@@ -24,14 +59,14 @@ export default function Model(props: any) {
   });
 
   useFrame(({ clock }) => {
-    if (group.current) {
-      (group.current.position).y = Math.sin(clock.getElapsedTime() * 1.5) / 2;
+    if (islandRef.current) {
+      (islandRef.current.position).y = Math.sin(clock.getElapsedTime() * 1.5) / 2;
     }
   })
 
   return (
     <mesh>
-      <group ref={group} {...props} dispose={null}>
+      <group ref={islandRef} {...props} dispose={null}>
       <pointLight position={[0,1,-2]} power={20} intensity={25} castShadow={true}/>
       <pointLight position={[0,1,-5]} power={2} intensity={5} castShadow={true}/>
       <group name="Sketchfab_Scene">

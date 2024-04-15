@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,16 +9,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        gray: {
-          200: "#D5DAE1"
-        },
-        black: {
-          DEFAULT: "#000",
-          500: "#1D2235"
-        },
-        blue: {
-          500: "#2b77e7"
-        }
+        transparent: 'transparent',
+        current: 'currentColor',
+        black: colors.black,
+        white: colors.white,
+        rose: colors.rose,
+        pink: colors.pink,
+        fuchsia: colors.fuchsia,
+        purple: colors.purple,
+        violet: colors.violet,
+        indigo: colors.indigo,
+        blue: colors.blue,
+        sky: colors.sky, // As of Tailwind CSS v2.2, `lightBlue` has been renamed to `sky`  
+        cyan: colors.cyan,
+        teal: colors.teal,
+        emerald: colors.emerald,
+        green: colors.green,
+        lime: colors.lime,
+        yellow: colors.yellow,
+        amber: colors.amber,
+        orange: colors.orange,
+        red: colors.red,
+        slate: colors.slate,
+        zinc: colors.zinc,
+        gray: colors.gray,
+        neutral: colors.blueGray,
+        stone: colors.stone,
       },
       fontFamily: {
         worksans: ["Work Sans", "sans-serif"],

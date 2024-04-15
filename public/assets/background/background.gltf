@@ -101,9 +101,9 @@
             "name": "Material__25__background_JPG_002",
             "pbrMetallicRoughness": {
                 "baseColorFactor": [
-                    0.4704,
-                    0.4704,
-                    0.4704,
+                    0.6704,
+                    0.6704,
+                    0.6704,
                     1.0
                 ],
                 "baseColorTexture": {

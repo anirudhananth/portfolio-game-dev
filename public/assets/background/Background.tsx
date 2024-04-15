@@ -19,7 +19,7 @@ export default function Model(props: any) {
   })
 
   return (
-    <group ref={background} {...props} dispose={null} scale={20}>
+    <group ref={background} {...props} dispose={null} scale={50}>
       <mesh geometry={(nodes.Object001 as THREE.Mesh).geometry} material={materials.Material__25__background_JPG_002} />
     </group>
   )
